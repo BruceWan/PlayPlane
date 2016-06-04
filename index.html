@@ -1,0 +1,2186 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="BruceWan" />
+<meta name="generator" content="Softwan" />
+<meta name="copyright" content="China by BruceWan" />
+<meta name="keywords" content="游戏,小游戏,射击,射击类游戏,打飞机,打灰机,飞机大战,涂鸦,涂鸦小游戏,游戏平台">
+<meta name="description" content="游戏中心的游戏可以免费玩耍，如有问题请联系E-mail:1101587171@qq.com">
+<!--/*<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />//不允许缩放*/-->
+<link rel="shortcut icon" href="image/icon32x32.png">
+<title>"打飞机"</title>
+<style type="text/css">
+body{
+	moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-o-user-select:none;
+	-khtml-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	margin:0px;
+	padding:0px;
+	background-color:#9FA7AC;
+	margin:auto;
+}
+.maindisplay{
+	border-color:#666;
+	border-width:6px;
+	border-style:double;
+	width:480px;
+	height:800px;
+	background-image:url(image/bg_01.jpg);
+	background-repeat:repeat-y;
+	margin:auto;
+}
+.title{
+	float:left;
+	margin-top:260px;
+	height:200px;
+	width:100%;
+	color:#666;
+	text-align:center;
+	background-color:transparent;
+	font-family:"方正喵喵体","微软雅黑", "黑体", "楷体";
+}
+.helpbox{
+	display:none;
+	float:left;
+	margin-top:300px;
+	height:200px;
+	width:100%;
+	color:#666;
+	text-align:center;
+	font-size:42px;
+	background-color:transparent;
+	cursor:default;
+	font-family:"方正喵喵体","微软雅黑", "黑体", "楷体";
+}
+.playmethodbox{
+	display:none;
+	float:left;
+	margin-top:300px;
+	height:200px;
+	width:100%;
+	color:#666;
+	text-align:center;
+	font-size:28px;
+	background-color:transparent;
+	cursor:default;
+	font-family:"方正喵喵体","微软雅黑", "黑体", "楷体";
+}
+.optionbox{
+	display:none;
+	float:left;
+	margin-top:240px;
+	height:200px;
+	width:100%;
+	color:#666;
+	text-align:center;
+	font-size:36px;
+	background-color:transparent;
+	font-family:"方正喵喵体","微软雅黑", "黑体", "楷体";
+}
+.endbox{
+	display:none;
+	float:left;
+	margin-top:240px;
+	height:200px;
+	width:100%;
+	color:#666;
+	text-align:center;
+	font-size:36px;
+	background-color:transparent;
+	font-family:"方正喵喵体","微软雅黑", "黑体", "楷体";
+}
+.score{
+	cursor:default;
+}
+.returngm:hover{
+	border-style:double;
+	border-width:6px;
+	cursor:pointer;
+}
+.restartgm:hover{
+	border-style:double;
+	border-width:6px;
+	cursor:pointer;
+}
+.quitgm:hover{
+	border-style:double;
+	border-width:6px;
+	cursor:pointer;
+}
+.logo{
+	font-size:65px;
+	font-weight:bold;
+	cursor:default;
+}
+.msg{
+	font-size:32px;
+	font-weight:bold;
+}
+.msg:hover{
+	border-style:double;
+	border-width:6px;
+	cursor:pointer;
+}
+.help{
+	font-size:26px;
+	font-weight:bold;
+}
+.help:hover{
+	border-style:double;
+	border-width:6px;
+	cursor:pointer;
+}
+.playmethod{
+	font-size:28px;
+	font-weight:bold;
+}
+.playmethod:hover{
+	border-style:double;
+	border-width:6px;
+	cursor:pointer;
+}
+.myplane{
+	position:absolute;
+	width:62px;
+	height:74px;	
+	background-color:transparent;
+	/*background-image:url(image/my_speed.gif);*/
+	background-image:url(image/my.png);
+	background-repeat:no-repeat;
+	cursor:none;
+	display:none;
+}
+.countdisplay{
+	width:300px;
+	height:60px;
+	background-color:transparent;
+	display:none;
+	float:none;
+}
+.startgm{
+	width:50px;
+	height:50px;
+	float:left;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+.countscore_space{
+	width:10px;
+	height:40px;
+	background-color:transparent;
+	float:left;
+}
+.countscore{	
+	width:240px;
+	height:30px;
+	background-color:transparent;
+	float:left;
+	font-family:"方正喵喵体","微软雅黑", "黑体", "楷体";
+	font-size:36px;
+	text-align:left;
+	padding-top:10px;
+	cursor:default;
+}
+.displaybgsound{
+	float:right;
+	font-family:"方正喵喵体","微软雅黑", "黑体", "楷体";
+	font-size:32px;
+	text-align:left;
+	padding-top:10px;
+	cursor:pointer;
+	display:none;
+	background-color:transparent;
+}
+.bullet{
+	height:20px;
+	width:20px;
+	background-color:transparent;
+	background-image:url(image/bullet_red.png);
+	background-repeat:no-repeat;
+	cursor:default;
+	position:absolute;
+	display:none;
+}
+.fire1{
+	width:10px;
+	height:20px;
+	background-repeat:no-repeat;
+	margin-top:53px;
+	margin-left:5px;
+	float:left;
+}
+.fire2{
+	width:10px;
+	height:21px;
+	background-repeat:no-repeat;
+	margin-top:53px;
+	margin-right:5px;
+	float:right;
+}
+.hostileplane{
+	width:40px;
+	height:42px;
+	position:absolute;
+	background-color:transparent;
+	top:0px;
+	left:0px;
+	background-repeat:no-repeat;
+	background-image:url(image/king3.png);
+	display:none;
+	cursor:default;
+}
+.hostileplane2{
+	width:69px;
+	height:89px;
+	position:absolute;
+	background-color:transparent;
+	top:0px;
+	left:0px;
+	background-repeat:no-repeat;
+	background-image:url(image/king2.png);
+	display:none;
+	cursor:default;
+}
+.hostileplane3{
+	width:108px;
+	height:164px;
+	position:absolute;
+	background-color:transparent;
+	top:0px;
+	left:0px;
+	background-repeat:no-repeat;
+	background-image:url(image/king.png);
+	display:none;
+	cursor:default;
+}
+.prop_c{
+	width:30px;
+	height:46px;
+	position:absolute;
+	background-color:transparent;
+	top:0px;
+	left:0px;
+	background-repeat:no-repeat;
+	display:none;
+	cursor:default;
+}
+.propbox{
+	width:120px;
+	height:30px;
+	background-color:transparent;
+	margin-top:704px;
+	margin-left:10px;
+	cursor:default;
+}
+.bigProp{
+	float:left;
+	margin-right:10px;
+	background-image:url(image/fatal.png);
+	background-color:transparent;
+	width:30px;
+	height:30px;
+	display:none;
+	cursor:pointer;
+}
+@font-face { font-family:方正喵喵体;src:url(font/fzmmt.ttf); }
+</style>
+
+<script language="javascript" type="text/javascript">
+window.onload=IniObj;//初始化参数
+document.oncontextmenu=OffRightMenu;//屏蔽右键
+
+//低等敌机实例控制值
+var HostilePlaneIsSend=true;//是否允许低等发射敌机
+var HostilePlaneLife=2;//低等敌机生命
+var HostilePlaneMaxNO=1;//最多敌机数量
+var HostilePlaneSpeed=5;
+var HostilePlaneStep=3;
+//中等敌机实例控制
+var HostilePlane2IsSend=false;
+var HostilePlane2Life=3;
+var HostilePlane2MaxNO=1;
+var HostilePlane2Speed=5;
+var HostilePlane2Step=3;
+//高等敌机实例控制
+var HostilePlane3IsSend=false;
+var HostilePlane3Life=5;
+var HostilePlane3MaxNO=1;
+var HostilePlane3Speed=5;
+var HostilePlane3Step=3;
+//子弹实例控制
+var BulletSpeed=10;
+var BulletStep=5;
+var IsChangeBulletColorBlue=false;
+//道具实例控制
+var PropSpeed=5;
+var PropStep=5;
+var PropTimeOut=5;//道具持续时间
+var PropSendTime=10;
+var PropIsSend=false;
+var BigPropNowNum=3;//必杀次数
+
+//剧情控制
+var TimeLine=0;//时间线
+function PlotControl(){
+	if(IsStart&&!IsEndGM){//排除暂停与结束
+		SendTimeProp();//定期派发道具
+		switch(TimeLine){
+			case 0:
+				PropStep=6;
+				HostilePlaneMaxNO=1;
+				HostilePlaneSpeed=5;
+				BulletSpeed=10;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 5:
+				BulletSpeed=8;
+				HostilePlaneMaxNO=2;
+				HostilePlaneSpeed=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 10:
+				BulletSpeed=7;
+				HostilePlaneMaxNO=3;
+				HostilePlaneSpeed=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 15:
+				BulletSpeed=5;
+				HostilePlaneMaxNO=5;
+				HostilePlaneSpeed=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 20:
+				HostilePlaneMaxNO=7;
+				HostilePlaneSpeed=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 25:
+				HostilePlaneMaxNO=8;
+				HostilePlaneSpeed=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 30:
+				HostilePlaneMaxNO=10;
+				HostilePlaneSpeed=5;
+				PropStep=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 60:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=1;
+				HostilePlaneSpeed=5;
+				HostilePlane2Speed=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=false;
+			break;
+			case 90:
+				HostilePlaneMaxNO=10;
+				HostilePlaneSpeed=5;
+				HostilePlane2MaxNO=2;
+				HostilePlane2Speed=5;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=false;
+			break;
+			case 120:
+				HostilePlaneMaxNO=10;
+				HostilePlaneSpeed=5;
+				HostilePlane2MaxNO=3;
+				HostilePlane2Speed=5;
+				PropStep=4;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=false;
+			break;
+			case 180:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=1;
+				HostilePlaneSpeed=5;
+				HostilePlane2Speed=5;
+				HostilePlane3Speed=5;
+				BulletSpeed=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+			case 240:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=2;
+				HostilePlaneSpeed=5;
+				HostilePlane2Speed=5;
+				HostilePlane3Speed=5;
+				BulletSpeed=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+			case 300:
+				HostilePlaneMaxNO=10;
+				HostilePlaneSpeed=3;
+				BulletSpeed=3;
+				PropStep=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=false;
+				HostilePlane3IsSend=false;
+			break;
+			case 360:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=1;
+				HostilePlaneSpeed=3;
+				HostilePlane2Speed=3;
+				BulletSpeed=3;
+				PropStep=2;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=false;
+			break;
+			case 420:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=2;
+				HostilePlaneSpeed=3;
+				HostilePlane2Speed=3;
+				BulletSpeed=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=false;
+			break;
+			case 480:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlaneSpeed=3;
+				HostilePlane2Speed=3;
+				BulletSpeed=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=false;
+			break;
+			case 540:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=1;
+				HostilePlaneSpeed=3;
+				HostilePlane2Speed=3;
+				HostilePlane3Speed=3;
+				BulletSpeed=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+			case 600:
+				PropTimeOut=30000;//道具持续时间
+				PropSendTime=10;
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=2;
+				HostilePlaneSpeed=3;
+				HostilePlane2Speed=3;
+				HostilePlane3Speed=3;
+				BulletSpeed=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+			case 660:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=2;
+				HostilePlaneSpeed=2;
+				HostilePlane2Speed=2;
+				HostilePlane3Speed=2;
+				BulletSpeed=3;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+			case 720:
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=2;
+				HostilePlaneSpeed=1;
+				HostilePlane2Speed=1;
+				HostilePlane3Speed=1;
+				BulletSpeed=2;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+			case 780:
+				HostilePlaneLife=3;//低等敌机生命
+				HostilePlane2Life=4;
+				HostilePlane3Life=5;
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=2;
+				HostilePlaneSpeed=1;
+				HostilePlane2Speed=1;
+				HostilePlane3Speed=1;
+				BulletSpeed=2;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+			case 840:
+				PropTimeOut=60000;//道具持续时间
+				PropSendTime=10;
+				HostilePlaneLife=4;//低等敌机生命
+				HostilePlane2Life=5;
+				HostilePlane3Life=6;
+				HostilePlaneMaxNO=10;
+				HostilePlane2MaxNO=3;
+				HostilePlane3MaxNO=2;
+				HostilePlaneSpeed=1;
+				HostilePlane2Speed=1;
+				HostilePlane3Speed=1;
+				BulletSpeed=2;
+				HostilePlaneIsSend=true;
+				HostilePlane2IsSend=true;
+				HostilePlane3IsSend=true;
+			break;
+		}
+		TimeLine+=1;
+	}
+}
+
+//隐藏进度条
+function hideScroll(){
+	document.body.style.overflow="hidden";
+}
+
+//定期派发道具
+function SendTimeProp(){
+	if(TimeLine%PropSendTime==0){//每10秒派发一次随机道具
+		PropIsSend=true;
+	}
+	else{
+		PropIsSend=false;
+	}
+}
+
+var btn_Start;var playmethodBox;var optionBox;var titlePage;var myPlane;
+var mainBG;var countDisplay;var mainBG;var myPlaneFire1;var sumScore;var bigProp1;var bigProp2;var bigProp3;
+var myPlaneFire2;var titlePage;var helpBox;var hostilePlane;var endBox;var prop;
+//背景音乐
+var bgSound1;var bgSound2;var bgSound3;var bgSound4;
+var OpenBGSound=true;
+var bgSoundO;
+
+var hostilePlane0;var hostilePlane1;var hostilePlane2;var hostilePlane3;
+var hostilePlane4;var hostilePlane5;var hostilePlane6;var hostilePlane7;
+var hostilePlane8;var hostilePlane9;
+var hostilePlane2_0;var hostilePlane2_1;var hostilePlane2_2;
+var hostilePlane3_0;var hostilePlane3_1;
+
+var bullet0;var bullet1;var bullet2;var bullet3;var bullet4;
+var bullet5;var bullet6;var bullet7;var bullet8;var bullet9;
+var bullet10;var bullet11;var bullet12;var bullet13;var bullet14;
+var bullet15;var bullet16;var bullet17;var bullet18;var bullet19;
+function IniObj(){	
+	bgSoundO=document.getElementById('bgSoundO');
+	bgSound1=document.getElementById('bgSound1');
+	bgSound2=document.getElementById('bgSound2');
+	bgSound3=document.getElementById('bgSound3');
+	bgSound4=document.getElementById('bgSound4');
+
+	bigProp1=document.getElementById('bigProp1');
+	bigProp2=document.getElementById('bigProp2');
+	bigProp3=document.getElementById('bigProp3');
+	prop=document.getElementById('prop');
+	endBox=document.getElementById('endBox');
+	sumScore=document.getElementById('sumScore');
+	
+	hostilePlane=document.getElementById('lable_Countscore');
+	
+	bullet0=document.getElementById('bullet0');
+	bullet1=document.getElementById('bullet1');
+	bullet2=document.getElementById('bullet2');
+	bullet3=document.getElementById('bullet3');
+	bullet4=document.getElementById('bullet4');
+	bullet5=document.getElementById('bullet5');
+	bullet6=document.getElementById('bullet6');
+	bullet7=document.getElementById('bullet7');
+	bullet8=document.getElementById('bullet8');
+	bullet9=document.getElementById('bullet9');
+	bullet10=document.getElementById('bullet10');
+	bullet11=document.getElementById('bullet11');
+	bullet12=document.getElementById('bullet12');
+	bullet13=document.getElementById('bullet13');
+	bullet14=document.getElementById('bullet14');
+	bullet15=document.getElementById('bullet15');
+	bullet16=document.getElementById('bullet16');
+	bullet17=document.getElementById('bullet17');
+	bullet18=document.getElementById('bullet18');
+	bullet19=document.getElementById('bullet19');
+	
+	hostilePlane0=document.getElementById('hostilePlane0');
+	hostilePlane1=document.getElementById('hostilePlane1');
+	hostilePlane2=document.getElementById('hostilePlane2');
+	hostilePlane3=document.getElementById('hostilePlane3');
+	hostilePlane4=document.getElementById('hostilePlane4');
+	hostilePlane5=document.getElementById('hostilePlane5');
+	hostilePlane6=document.getElementById('hostilePlane6');
+	hostilePlane7=document.getElementById('hostilePlane7');
+	hostilePlane8=document.getElementById('hostilePlane8');
+	hostilePlane9=document.getElementById('hostilePlane9');
+	
+	hostilePlane2_0=document.getElementById('hostilePlane2_0');
+	hostilePlane2_1=document.getElementById('hostilePlane2_1');
+	hostilePlane2_2=document.getElementById('hostilePlane2_2');
+	
+	hostilePlane3_0=document.getElementById('hostilePlane3_0');
+	hostilePlane3_1=document.getElementById('hostilePlane3_1');
+	
+	btn_Start=document.getElementById('btn_Start');
+	playmethodBox=document.getElementById('playmethodBox');
+	optionBox=document.getElementById('optionBox');
+	titlePage=document.getElementById('titlePage');
+	myPlane=document.getElementById('myPlane');
+	mainBG=document.getElementById('mainBG');
+	countDisplay=document.getElementById('countDisplay');
+	mainBG=document.getElementById('mainBG');
+	myPlaneFire1=document.getElementById('myPlaneFire1');
+	myPlaneFire2=document.getElementById('myPlaneFire2');
+	helpBox=document.getElementById('helpBox');
+	hideScroll();
+}
+
+//屏蔽右键菜单
+function OffRightMenu(){
+	event.returnValue=false;
+	return false;
+}
+
+var IsStart=false;//是否开始
+var IsCanMenuOpt=false;
+var IsEndGM=false;
+var NowScore=0;//当前成绩
+//开始游戏
+function GoToGM(){
+	IniGM();
+}
+
+//继续游戏
+function StartGM(){
+	if(!IsEndGM){
+		IsStart=true;
+		btn_Start.src="image/pause.png";
+		optionBox.style.display="none";
+	}
+	else{
+		EndBoxIsOpen();
+	}
+}
+
+//暂停游戏
+function PauseGM(){
+	if(!IsEndGM){
+		IsStart=false;
+		btn_Start.src="image/start.png";
+		optionBox.style.display="block";
+	}
+	else{
+		EndBoxIsOpen();
+	}
+}
+
+//处理游戏全局鼠标事件 有兼容处理
+function MainDisplyClick(ev){
+	if(IsCanMenuOpt){
+		var oEvent=ev||event;
+		if(oEvent.button==1||oEvent.button==0){//谷歌、IE//单左键
+		}
+		else if(oEvent.button==2){//谷歌、IE右键
+			if(!IsDownMosue){//不按住左键时
+				if(IsStart){
+					PauseGM();
+				}
+				else{
+					StartGM();
+				}
+			}
+			else{//谷歌
+				if(IsStart){
+					SendBigProp();
+				}
+			}
+		}
+		else if(oEvent.button==3){//IE兼容按下左右键
+			if(IsStart){
+				SendBigProp();
+			}
+		}
+	}
+}
+
+//处理暂停按钮事件
+function DealStartBtnEvent(ev){
+	var oEvent=ev||event;
+	if(IsStart){
+		PauseGM();
+	}
+	else{
+		StartGM();
+	}
+}
+
+//按下事件 有兼容处理
+var IsDownMosue=false;
+function MyPlaneMouseDwon(ev){
+	var oEvent=ev||event;
+	if(oEvent.button==1||oEvent.button==0){
+		IsDownMosue=true;
+	}
+	else if(oEvent.button==2){
+	}
+}
+
+//释放事件 有兼容处理
+function MyPlaneMouseUp(ev){
+	var oEvent=ev||event;
+	if(oEvent.button==1||oEvent.button==0){
+		IsDownMosue=false;
+	}
+	if(oEvent.button==2){
+	}
+}
+
+//初始化主体框架
+function IniGM(){
+	//初始化全局参数
+	IsStart=true;
+	IsEndGM=false;
+	IsOpenEndBox=false
+	NowScore=0;
+	BGSpeed=2;
+	TimeLine=0;
+	BGLoc=0;
+	MaxLoc=99999999;
+	IsChangeBulletColorBlue=false;
+	
+	HostilePlaneIsSend=true;
+	HostilePlane2IsSend=false;
+	HostilePlane3IsSend=false;
+	BulletSpeed=10;
+	HostilePlaneLife=2;//低等敌机生命
+	HostilePlane2Life=3;
+	HostilePlane3Life=5;
+	
+	PropSpeed=5;
+	PropStep=5;
+	PropTimeOut=20000;//道具持续时间
+	PropSendTime=10;
+	PropIsSend=false;
+	
+	BigPropNowNum=3;
+	DisplayBigProp();
+	
+	//关闭标题
+	titlePage.style.display="none";
+	
+	//重置飞机位置
+	myPlane.style.display="block";
+	myPlane.style.left=(mainBG.getBoundingClientRect().left+mainBG.offsetWidth/2-myPlane.offsetWidth/2)+"px";
+	myPlane.style.top=(mainBG.getBoundingClientRect().top+mainBG.offsetHeight-myPlane.offsetHeight)+"px";
+	myPlane.style.backgroundImage="url(image/my.png)";
+	
+	//开启左上角的统计界面
+	countDisplay.style.display="block";
+	
+	//切换按钮
+	btn_Start.style.display="block";
+	btn_Start.src="image/pause.png";	
+
+	//显示声音开关
+	bgSoundO.style.display="block";
+
+	//关闭界面
+	optionBox.style.display="none";
+	endBox.style.display="none";
+	StartBGA();
+	IsCanMenuOpt=true;
+}
+
+//重新开始游戏
+function RestartGM(){
+	//重新显示积分
+	ClearNowScore();
+	CloseBGA();
+	CloseGMImg();
+	IniGM();
+}
+
+var BGSpeed=2;//背景移动速度
+var BGLoc=0;//背景的默认位置
+var MaxLoc=99999999;//背景的最大位置
+//背景动画
+function MoveBG(){
+	if(IsStart&&!IsEndGM)
+	{
+		if(BGLoc<MaxLoc){
+			mainBG.style.backgroundImage="url(image/bg_02.jpg)";		
+			mainBG.style.backgroundPosition="0px "+BGLoc+"px";
+			BGLoc=BGLoc+BGSpeed;
+		}
+		else{
+			BGLoc=0;
+		}
+	}
+}
+
+//自己的飞机运动效果
+var MyPlaneBG=1;
+function MoveMyPlaneA(){
+	if(IsStart&&!IsEndGM){
+		if(MyPlaneBG==1){
+			MyPlaneBG=2;
+			myPlaneFire1.style.backgroundImage="url(image/bullet_king_4.png)";
+			myPlaneFire2.style.backgroundImage="url(image/bullet_king_4.png)";
+		}
+		else if(MyPlaneBG==2){
+			MyPlaneBG=3;
+			myPlaneFire1.style.backgroundImage="url(image/bullet_king_3.png)";	
+			myPlaneFire2.style.backgroundImage="url(image/bullet_king_3.png)";	
+		}
+		else if(MyPlaneBG==3){
+			MyPlaneBG=4;
+			myPlaneFire1.style.backgroundImage="url(image/bullet_king_2.png)";	
+			myPlaneFire2.style.backgroundImage="url(image/bullet_king_2.png)";	
+		}
+		else if(MyPlaneBG==4){
+			MyPlaneBG=1;
+			myPlaneFire1.style.backgroundImage="url(image/bullet_king_1.png)";	
+			myPlaneFire2.style.backgroundImage="url(image/bullet_king_1.png)";	
+		}
+	}
+}
+
+function FollowMouse(ev){
+	if(IsStart&&IsDownMosue)
+	{
+		var oEvent=ev||event;
+		//计算我的战机位置
+		var myPlane_of_x=myPlane.offsetWidth/2;//偏移中心x轴
+		var myPlane_of_y=myPlane.offsetHeight/2;//偏移中心y轴
+		var myPlane_x=(oEvent.clientX-myPlane_of_x);
+		var myPlane_y=(oEvent.clientY-myPlane_of_y);
+		
+		//约束区域
+		if(mainBG.getBoundingClientRect().left<=myPlane_x
+		&&mainBG.getBoundingClientRect().left+mainBG.offsetWidth>=myPlane_x+myPlane.offsetWidth)
+		{
+			myPlane.style.left=myPlane_x+"px";
+		}
+		if(mainBG.getBoundingClientRect().top<=myPlane_y
+		&&mainBG.getBoundingClientRect().top+mainBG.offsetHeight>=myPlane_y+myPlane.offsetHeight)
+		{
+			myPlane.style.top=myPlane_y+"px";
+		}
+	}
+}	
+
+//内容修正方法
+function NewlyIniLoc(){
+	//计算我的战机位置
+	var myPlane_x=myPlane.getBoundingClientRect().left;
+	var myPlane_y=myPlane.getBoundingClientRect().top;
+	//修正界面
+	if(mainBG.getBoundingClientRect().left>=myPlane_x)
+	{
+		myPlane.style.left=(mainBG.getBoundingClientRect().left)+"px";
+	}
+	if(mainBG.getBoundingClientRect().left+mainBG.offsetWidth<=myPlane_x+myPlane.offsetWidth)
+	{
+		myPlane.style.left=(mainBG.getBoundingClientRect().left+mainBG.offsetWidth-myPlane.offsetWidth)+"px";
+	}
+	if(mainBG.getBoundingClientRect().top>=myPlane_y)
+	{
+		myPlane.style.top=(mainBG.getBoundingClientRect().top)+"px";
+	}
+	if(mainBG.getBoundingClientRect().top+mainBG.offsetHeight<=myPlane_y+myPlane.offsetHeight)
+	{
+		myPlane.style.top=(mainBG.getBoundingClientRect().top+mainBG.offsetHeight-myPlane.offsetHeight)+"px";
+	}
+}
+
+//显示帮助框
+var DisplayHelpBox=false;
+function OpenHelpBox(){
+	if(DisplayHelpBox){
+		DisplayHelpBox=false;
+		titlePage.style.display="block";
+		helpBox.style.display="none";
+	}
+	else{
+		DisplayHelpBox=true;
+		titlePage.style.display="none";
+		helpBox.style.display="block";
+	}
+}
+
+//显示玩法介绍框
+var DisplayPlayMethodBox=false;
+function OpenPlayMethodBox(){
+	if(DisplayPlayMethodBox){
+		DisplayPlayMethodBox=false;
+		titlePage.style.display="block";
+		playmethodBox.style.display="none";
+	}
+	else{
+		DisplayPlayMethodBox=true;
+		titlePage.style.display="none";
+		playmethodBox.style.display="block";
+	}
+}
+
+
+//退出游戏
+function QuitGM(){	
+	//关闭背景滚动
+	CloseBGA();
+	
+	//初始化全局参数	
+	IsCanMenuOpt=false;
+	IsStart=false;
+	IsOpenEndBox=false;
+	NowScore=0;
+	BGSpeed=2;
+	TimeLine=0;
+	BGLoc=0;
+	MaxLoc=99999999;
+	BigPropNowNum=3;
+	IsEndGM=true;
+	IsChangeBulletColorBlue=false;
+	
+	HostilePlaneIsSend=true;
+	HostilePlane2IsSend=false;
+	HostilePlane3IsSend=false;
+	BulletSpeed=10;
+	HostilePlaneLife=2;//低等敌机生命
+	HostilePlane2Life=3;
+	HostilePlane3Life=5;
+	
+	PropSpeed=5;
+	PropStep=5;
+	PropTimeOut=20000;//道具持续时间
+	PropSendTime=10;
+	PropIsSend=false;
+	
+	//重新显示积分
+	ClearNowScore();
+	
+	//关闭标题
+	titlePage.style.display="block";
+	
+	//开启左上角的统计界面
+	countDisplay.style.display="none";
+	
+	//切换按钮
+	btn_Start.style.display="none";
+	
+	//主背景
+	mainBG.style.backgroundImage="url(image/bg_01.jpg)";
+	mainBG.style.backgroundPosition="0px 0px";
+	
+	//显示声音开关
+	bgSoundO.style.display="none";
+	
+	//关闭界面
+	optionBox.style.display="none";
+	endBox.style.display="none";
+	CloseGMImg();
+	NotDisplayBigProp();
+}
+
+//去掉场景
+function CloseGMImg(){	
+	//去掉飞机
+	myPlane.style.display="none";
+	
+	//去掉低等飞机
+	hostilePlane0.style.display="none";
+	hostilePlane1.style.display="none";
+	hostilePlane2.style.display="none";
+	hostilePlane3.style.display="none";
+	hostilePlane4.style.display="none";
+	hostilePlane5.style.display="none";
+	hostilePlane6.style.display="none";
+	hostilePlane7.style.display="none";
+	hostilePlane8.style.display="none";
+	hostilePlane9.style.display="none";
+	
+	//去掉中等飞机
+	hostilePlane2_0.style.display="none";
+	hostilePlane2_1.style.display="none";
+	hostilePlane2_2.style.display="none";
+	
+	//去掉高等飞机
+	hostilePlane3_0.style.display="none";
+	hostilePlane3_1.style.display="none";
+	
+	//去掉子弹
+	bullet0.style.display="none";
+	bullet1.style.display="none";
+	bullet2.style.display="none";
+	bullet3.style.display="none";
+	bullet4.style.display="none";
+	bullet5.style.display="none";
+	bullet6.style.display="none";
+	bullet7.style.display="none";
+	bullet8.style.display="none";
+	bullet9.style.display="none";
+	bullet10.style.display="none";
+	bullet11.style.display="none";
+	bullet12.style.display="none";
+	bullet13.style.display="none";
+	bullet14.style.display="none";
+	bullet15.style.display="none";
+	bullet16.style.display="none";
+	bullet17.style.display="none";
+	bullet18.style.display="none";
+	bullet19.style.display="none";
+	
+	//隐藏道具
+	prop.style.display="none";	
+}
+
+var WhileDisplayBG;//存放定时器示例
+var WhileMyPlaneBG;
+var WhileSendBullet;
+var WhileSendHostilePlane;
+var WhileSendHostilePlane2;
+var WhileSendHostilePlane3;
+var WhileCheckBullet;
+var WhilePlotControl;
+var WhileSendProp;
+//开始动画
+function StartBGA(){
+	WhileDisplayBG=setInterval("MoveBG()",10);
+	WhileMyPlaneBG=setInterval("MoveMyPlaneA()",150);
+	WhileSendBullet=setInterval("SendBullet()",200);//子弹的间隔	
+	WhileSendHostilePlane=setInterval("SendHostilePlane()",400);//敌机的间隔
+	WhileSendHostilePlane2=setInterval("SendHostilePlane2()",400);//敌机的间隔
+	WhileSendHostilePlane3=setInterval("SendHostilePlane3()",400);//敌机的间隔
+	WhileCheckBullet=setInterval("CheckBullet()",50);
+	WhilePlotControl=setInterval("PlotControl()",1000);
+	WhileSendProp=setInterval("SendProp()",400);//敌机的间隔
+}
+
+//关闭背景动画
+function CloseBGA(){
+	if(WhileDisplayBG!=null){
+		window.clearInterval(WhileDisplayBG);
+	}
+	if(WhileMyPlaneBG!=null){
+		window.clearInterval(WhileMyPlaneBG);
+	}
+	if(WhileSendBullet!=null){
+		window.clearInterval(WhileSendBullet);
+	}
+	if(WhileSendHostilePlane!=null){
+		window.clearInterval(WhileSendHostilePlane);
+	}
+	if(WhileSendHostilePlane2!=null){
+		window.clearInterval(WhileSendHostilePlane2);
+	}
+	if(WhileSendHostilePlane3!=null){
+		window.clearInterval(WhileSendHostilePlane3);
+	}
+	if(WhileCheckBullet!=null){
+		window.clearInterval(WhileCheckBullet);
+	}
+	if(WhilePlotControl!=null){
+		window.clearInterval(WhilePlotControl);
+	}
+	if(WhileSendProp!=null){
+		window.clearInterval(WhileSendProp);
+	}
+}
+
+//子弹连续发射
+var BulletNowNum=0;//当前子弹数量
+var BulletNO=0;
+var BulletImg1="url(image/bullet_red.png)";
+var BulletImg2="url(image/bullet_blue.png)";
+function SendBullet(){
+	if(IsStart&&!IsEndGM){
+		if(BulletNO>19){
+			BulletNO=0;//保证连贯效果
+		}
+		if(BulletNO<20){
+			if(IsChangeBulletColorBlue){
+				if(BulletNowNum<19)//至少有2发
+				{
+					var bullet=document.getElementById('bullet'+BulletNO);//左弹夹
+					var b2=BulletNO+1;
+					if(b2>19){
+						b2=0;
+					}
+					var bullet1=document.getElementById('bullet'+b2);//右弹夹
+		
+					bullet.style.display="block";
+					if(bullet.style.backgroundImage!=BulletImg2){
+						bullet.style.backgroundImage=BulletImg2;
+					}
+				
+					bullet1.style.display="block";
+					if(bullet1.style.backgroundImage!=BulletImg2){
+						bullet1.style.backgroundImage=BulletImg2;
+					}
+				
+					var bullet_of_y=(myPlane.getBoundingClientRect().top-bullet.offsetHeight+45);	
+					var bullet_of_x=(myPlane.getBoundingClientRect().left+myPlane.offsetWidth/2-bullet.offsetWidth/2-14);
+					bullet.style.left=bullet_of_x+"px";//子弹的x坐标	
+					bullet.style.top=bullet_of_y+"px";//子弹的y坐标
+				
+					bullet_of_x=(myPlane.getBoundingClientRect().left+myPlane.offsetWidth/2-bullet1.offsetWidth/2+26);
+					bullet1.style.left=bullet_of_x+"px";//子弹的x坐标	
+					bullet1.style.top=bullet_of_y+"px";//子弹的y坐标
+				
+					WhileABullet_Blue(mainBG,bullet,bullet1,bullet_of_y);
+					
+					BulletNowNum=BulletNowNum+2;
+					BulletNO=b2+1;
+					PlaySound1();
+				}
+			}
+			else{				
+				if(BulletNowNum<20)//至少有2发
+				{
+					var bullet=document.getElementById('bullet'+BulletNO);	
+
+					bullet.style.display="block";
+					if(bullet.style.backgroundImage!=BulletImg1){
+						bullet.style.backgroundImage=BulletImg1;
+					}
+	
+					var bullet_of_x=(myPlane.getBoundingClientRect().left+myPlane.offsetWidth/2-bullet.offsetWidth/2+5);
+					bullet.style.left=bullet_of_x+"px";//子弹的x坐标
+	
+					var bullet_of_y=(myPlane.getBoundingClientRect().top-bullet.offsetHeight+45);
+					bullet.style.top=bullet_of_y+"px";//子弹的y坐标
+					
+					BulletNowNum=BulletNowNum+1;
+					WhileABullet_Red(mainBG,bullet,bullet_of_y);				
+					BulletNO=BulletNO+1;
+					PlaySound1();
+				}
+			}
+		}
+	}
+}
+
+//子弹实例控制
+function WhileABullet_Red(mainBG,bullet,bullet_of_y){
+	//动态修正	
+	var bullet_of_x=bullet.getBoundingClientRect().left;		
+	if(bullet_of_x<mainBG.getBoundingClientRect().left){
+		bullet_of_x=mainBG.getBoundingClientRect().left;
+	}
+	else if(bullet_of_x>mainBG.getBoundingClientRect().left
+	+mainBG.offsetWidth){
+		bullet_of_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth-bullet.offsetWidth;
+	}
+	bullet.style.left=bullet_of_x+"px";//子弹的x坐标
+	
+	if(IsStart){
+		bullet_of_y=bullet_of_y-BulletStep;
+		bullet.style.top=bullet_of_y+"px";//子弹的y坐标	
+	}
+	if(bullet_of_y>-20){
+		setTimeout(function(){ WhileABullet_Red(mainBG,bullet,bullet_of_y);},BulletSpeed);
+	}else{
+		bullet.style.display="none";
+		BulletNowNum=BulletNowNum-1;
+	}
+}
+function WhileABullet_Blue(mainBG,bullet,bullet1,bullet_of_y){	
+	//动态修正	
+	var bullet_of_x=bullet.getBoundingClientRect().left;//弹1	
+	if(bullet_of_x<mainBG.getBoundingClientRect().left){
+		bullet_of_x=mainBG.getBoundingClientRect().left;
+	}
+	else if(bullet_of_x>mainBG.getBoundingClientRect().left
+	+mainBG.offsetWidth){
+		bullet_of_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth-bullet.offsetWidth;
+	}
+	bullet.style.left=bullet_of_x+"px";//子弹的x坐标
+		
+	var bullet_of_x2=bullet1.getBoundingClientRect().left;//弹2
+	if(bullet_of_x2<mainBG.getBoundingClientRect().left){
+		bullet_of_x2=mainBG.getBoundingClientRect().left;
+	}
+	else if(bullet_of_x2>mainBG.getBoundingClientRect().left
+	+mainBG.offsetWidth){
+		bullet_of_x2=mainBG.getBoundingClientRect().left+mainBG.offsetWidth-bullet1.offsetWidth;
+	}
+	bullet1.style.left=bullet_of_x2+"px";//子弹的x坐标
+	
+	if(IsStart){
+		bullet_of_y=bullet_of_y-BulletStep;
+		bullet.style.top=bullet_of_y+"px";//子弹的y坐标
+		bullet1.style.top=bullet_of_y+"px";//子弹的y坐标
+	}
+	if(bullet_of_y>-20){
+		setTimeout(function(){ WhileABullet_Blue(mainBG,bullet,bullet1,bullet_of_y);},BulletSpeed);
+	}else{
+		bullet.style.display="none";
+		bullet1.style.display="none";
+		BulletNowNum=BulletNowNum-2;
+	}
+}
+
+//低等敌机连续发射
+var HostilePlaneNowNum=0;//当前敌机数量
+var HostilePlaneNO=0;//当前敌机编号机
+function SendHostilePlane(){
+	if(IsStart&&!IsEndGM){
+		if(HostilePlaneNO>9){
+			HostilePlaneNO=0;//保证连贯效果
+		}
+		if(HostilePlaneNO<10&&HostilePlaneIsSend&&HostilePlaneMaxNO>HostilePlaneNowNum){
+			//var hostilePlane=document.getElementById('hostilePlane'+HostilePlaneNO);
+			var hostilePlane;
+			switch(HostilePlaneNO){
+				case 0:hostilePlane=hostilePlane0;break;
+				case 1:hostilePlane=hostilePlane1;break;
+				case 2:hostilePlane=hostilePlane2;break;
+				case 3:hostilePlane=hostilePlane3;break;
+				case 4:hostilePlane=hostilePlane4;break;
+				case 5:hostilePlane=hostilePlane5;break;
+				case 6:hostilePlane=hostilePlane6;break;
+				case 7:hostilePlane=hostilePlane7;break;
+				case 8:hostilePlane=hostilePlane8;break;
+				case 9:hostilePlane=hostilePlane9;break;
+			}
+			UpdateHostilePlaneLife('hostilePlane'+HostilePlaneNO,HostilePlaneLife);
+				
+			hostilePlane.style.display="block";
+			hostilePlane.style.backgroundImage="url(image/king3.png)";
+	
+			var hostilePlane_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth*Math.random()-hostilePlane.offsetWidth;		
+			if(hostilePlane_x<mainBG.getBoundingClientRect().left){
+				hostilePlane_x=mainBG.getBoundingClientRect().left;
+			}
+			hostilePlane.style.left=hostilePlane_x+"px";//子弹的x坐标
+	
+			var hostilePlane_y=-27;
+			hostilePlane.style.top=hostilePlane_y+"px";//子弹的y坐标
+	
+			HostilePlaneNowNum=HostilePlaneNowNum+1;
+			WhileAHostilePlane(mainBG,hostilePlane,hostilePlane_y);
+			HostilePlaneNO=HostilePlaneNO+1;
+		}
+	}
+}
+
+//低等敌机实例控制
+function WhileAHostilePlane(mainBG,hostilePlane,hostilePlane_y){
+	//动态修正	
+	var hostilePlane_x=hostilePlane.getBoundingClientRect().left;		
+	if(hostilePlane_x<mainBG.getBoundingClientRect().left){
+		hostilePlane_x=mainBG.getBoundingClientRect().left;
+	}
+	else if(hostilePlane_x>mainBG.getBoundingClientRect().left
+	+mainBG.offsetWidth){
+		hostilePlane_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth-hostilePlane.offsetWidth;
+	}
+	hostilePlane.style.left=hostilePlane_x+"px";//子弹的x坐标
+		
+	if(IsStart){	
+		hostilePlane_y=hostilePlane_y+HostilePlaneStep;
+		hostilePlane.style.top=hostilePlane_y+"px";//子弹的y坐标		
+	}
+	if(hostilePlane_y<(mainBG.offsetHeight-hostilePlane.offsetHeight)){
+		setTimeout(function(){ WhileAHostilePlane(mainBG,hostilePlane,hostilePlane_y);},HostilePlaneSpeed);
+	}
+	else{		
+		hostilePlane.style.display="none";
+		HostilePlaneNowNum=HostilePlaneNowNum-1;
+	}
+}
+
+//中等敌机连续发射
+var HostilePlane2NowNum=0;//当前敌机数量
+var HostilePlane2NO=0;//当前敌机编号机
+function SendHostilePlane2(){
+	if(IsStart&&!IsEndGM){
+		if(HostilePlane2NO>2){
+			HostilePlane2NO=0;//保证连贯效果
+		}
+		if(HostilePlane2NO<3&&HostilePlane2IsSend&&HostilePlane2MaxNO>HostilePlane2NowNum){
+			var hostilePlane;
+			switch(HostilePlane2NO){
+				case 0:hostilePlane=hostilePlane2_0;break;
+				case 1:hostilePlane=hostilePlane2_1;break;
+				case 2:hostilePlane=hostilePlane2_2;break;
+			}
+			UpdateHostilePlaneLife('hostilePlane2_'+HostilePlane2NO,HostilePlane2Life);
+			hostilePlane.style.display="block";
+			hostilePlane.style.backgroundImage="url(image/king2.png)";
+	
+			var hostilePlane_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth*Math.random()-hostilePlane.offsetWidth;		
+			if(hostilePlane_x<mainBG.getBoundingClientRect().left){
+				hostilePlane_x=mainBG.getBoundingClientRect().left;
+			}
+			hostilePlane.style.left=hostilePlane_x+"px";//子弹的x坐标
+	
+			var hostilePlane_y=-90;
+			hostilePlane.style.top=hostilePlane_y+"px";//子弹的y坐标
+	
+			HostilePlane2NowNum=HostilePlane2NowNum+1;
+			WhileAHostilePlane2(mainBG,hostilePlane,hostilePlane_y);
+			HostilePlane2NO=HostilePlane2NO+1;
+		}
+	}
+}
+
+//中等敌机实例控制
+function WhileAHostilePlane2(mainBG,hostilePlane,hostilePlane_y){
+	//动态修正	
+	var hostilePlane_x=hostilePlane.getBoundingClientRect().left;		
+	if(hostilePlane_x<mainBG.getBoundingClientRect().left){
+		hostilePlane_x=mainBG.getBoundingClientRect().left;
+	}
+	else if(hostilePlane_x>mainBG.getBoundingClientRect().left
+	+mainBG.offsetWidth){
+		hostilePlane_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth-hostilePlane.offsetWidth;
+	}
+	hostilePlane.style.left=hostilePlane_x+"px";//子弹的x坐标
+		
+	if(IsStart){	
+		hostilePlane_y=hostilePlane_y+HostilePlane2Step;
+		hostilePlane.style.top=hostilePlane_y+"px";//子弹的y坐标		
+	}
+	if(hostilePlane_y<(mainBG.offsetHeight-hostilePlane.offsetHeight)){
+		setTimeout(function(){ WhileAHostilePlane2(mainBG,hostilePlane,hostilePlane_y);},HostilePlane2Speed);
+	}
+	else{		
+		hostilePlane.style.display="none";
+		HostilePlane2NowNum=HostilePlane2NowNum-1;
+	}
+}
+
+//高等敌机连续发射
+var HostilePlane3NowNum=0;//当前敌机数量
+var HostilePlane3NO=0;//当前敌机编号机
+function SendHostilePlane3(){
+	if(IsStart&&!IsEndGM){
+		if(HostilePlane3NO>1){
+			HostilePlane3NO=0;//保证连贯效果
+		}
+		if(HostilePlane3NO<2&&HostilePlane3IsSend&&HostilePlane3MaxNO>HostilePlane3NowNum){
+			var hostilePlane;
+			switch(HostilePlane3NO){
+				case 0:hostilePlane=hostilePlane3_0;break;
+				case 1:hostilePlane=hostilePlane3_1;break;
+			}
+			UpdateHostilePlaneLife('hostilePlane3_'+HostilePlane3NO,HostilePlane3Life);
+			hostilePlane.style.display="block";
+			hostilePlane.style.backgroundImage="url(image/king.png)";
+	
+			var hostilePlane_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth*Math.random()-hostilePlane.offsetWidth;		
+			if(hostilePlane_x<mainBG.getBoundingClientRect().left){
+				hostilePlane_x=mainBG.getBoundingClientRect().left;
+			}
+			hostilePlane.style.left=hostilePlane_x+"px";//子弹的x坐标
+	
+			var hostilePlane_y=-164;
+			hostilePlane.style.top=hostilePlane_y+"px";//子弹的y坐标
+	
+			HostilePlane3NowNum=HostilePlane3NowNum+1;
+			WhileAHostilePlane3(mainBG,hostilePlane,hostilePlane_y);
+			HostilePlane3NO=HostilePlane3NO+1;
+		}
+	}
+}
+
+//高等敌机实例控制
+function WhileAHostilePlane3(mainBG,hostilePlane,hostilePlane_y){
+	//动态修正	
+	var hostilePlane_x=hostilePlane.getBoundingClientRect().left;		
+	if(hostilePlane_x<mainBG.getBoundingClientRect().left){
+		hostilePlane_x=mainBG.getBoundingClientRect().left;
+	}
+	else if(hostilePlane_x>mainBG.getBoundingClientRect().left
+	+mainBG.offsetWidth){
+		hostilePlane_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth-hostilePlane.offsetWidth;
+	}
+	hostilePlane.style.left=hostilePlane_x+"px";//子弹的x坐标
+		
+	if(IsStart){	
+		hostilePlane_y=hostilePlane_y+HostilePlane3Step;
+		hostilePlane.style.top=hostilePlane_y+"px";//子弹的y坐标		
+	}
+	if(hostilePlane_y<(mainBG.offsetHeight-hostilePlane.offsetHeight)){
+		setTimeout(function(){ WhileAHostilePlane3(mainBG,hostilePlane,hostilePlane_y);},HostilePlane3Speed);
+	}
+	else{		
+		hostilePlane.style.display="none";
+		HostilePlane3NowNum=HostilePlane3NowNum-1;
+	}
+}
+
+//道具派送
+var PropMaxNO=1;
+var PropNowNum=0;//当前敌机数量
+var PropImg1="url(image/prop_red.png)";
+var PropImg2="url(image/prop_blue.png)";
+var PropImg3="url(image/fatal.png)";
+function SendProp(){
+	if(IsStart&&!IsEndGM){
+		if(PropIsSend&&PropMaxNO>PropNowNum){		
+			var propCode=Math.random();		
+			prop.style.display="block";
+			if(propCode<=0.3&&propCode>=0.0)
+			{
+				prop.style.backgroundImage=PropImg1;
+			}
+			else if(propCode>0.3&&propCode<=0.7){
+				prop.style.backgroundImage=PropImg2;
+			}
+			else{
+				prop.style.backgroundImage=PropImg3;
+			}
+	
+			var prop_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth*Math.random()-prop.offsetWidth;		
+			if(prop_x<mainBG.getBoundingClientRect().left){
+				prop_x=mainBG.getBoundingClientRect().left;
+			}
+			prop.style.left=prop_x+"px";//子弹的x坐标
+	
+			var prop_y=-46;
+			prop.style.top=prop_y+"px";//子弹的y坐标
+	
+			PropNowNum=PropNowNum+1;
+			WhileAProp(mainBG,prop,prop_y);
+		}
+	}
+}
+
+//道具实例控制
+function WhileAProp(mainBG,prop,prop_y){
+	//动态修正	
+	var prop_x=prop.getBoundingClientRect().left;		
+	if(prop_x<mainBG.getBoundingClientRect().left){
+		prop_x=mainBG.getBoundingClientRect().left;
+	}
+	else if(prop_x>mainBG.getBoundingClientRect().left
+	+mainBG.offsetWidth){
+		prop_x=mainBG.getBoundingClientRect().left+mainBG.offsetWidth-prop.offsetWidth;
+	}
+	prop.style.left=prop_x+"px";//子弹的x坐标
+		
+	if(IsStart){	
+		prop_y=prop_y+PropStep;
+		prop.style.top=prop_y+"px";//子弹的y坐标		
+	}
+	if(prop_y<(mainBG.offsetHeight-prop.offsetHeight)){
+		setTimeout(function(){ WhileAProp(mainBG,prop,prop_y);},PropSpeed);
+	}
+	else{		
+		prop.style.display="none";
+		PropNowNum=PropNowNum-1;
+	}
+}
+
+//道具与飞机间检测
+function CheckProp(){
+	//取得飞机位于x轴 a,b 坐标
+	//飞机左上角
+	var myPlane_x_ax=myPlane.getBoundingClientRect().left;
+	//飞机右上角
+	var myPlane_x_bx=myPlane.getBoundingClientRect().top+myPlane.offsetWidth;
+
+	//取得飞机位于y轴 A,B 坐标
+	//飞机左下角
+	var myPlane_y_ay=myPlane.getBoundingClientRect().top;
+	//飞机右下角
+	var myPlane_y_by=myPlane.getBoundingClientRect().top+myPlane.offsetHeight;
+
+	if(prop==null){
+		return;
+	}
+
+	//取得低等机的位于x轴 a,b 坐标
+	//敌机左上角
+	var prop_x_ax=prop.getBoundingClientRect().left;
+	//敌机右上角
+	var prop_x_bx=prop.getBoundingClientRect().left+prop.offsetWidth;
+		
+	//取得低等机的位于y轴 A,B 坐标
+	//敌机左下角
+	var prop_y_ay=prop.getBoundingClientRect().top;
+	//敌机右下角
+	var prop_y_by=prop.getBoundingClientRect().top+prop.offsetHeight;
+				
+	//判断是否相撞,近似距离校正
+	if(
+		//x轴区域
+		prop_x_ax-myPlane.offsetWidth<=myPlane_x_ax&&prop_x_bx>=myPlane_x_ax&&
+		//y轴区域
+		prop_y_ay-myPlane.offsetHeight<=myPlane_y_by&&prop_y_by>=myPlane_y_ay){			
+		prop.style.display="none";	
+		Add_hostilePlane_D();	
+		if(prop.style.backgroundImage.indexOf('blue')>-1){
+			TimeOutProp_Blue();	
+			PlaySound3();	
+		}
+		else if(prop.style.backgroundImage.indexOf('red')>-1){
+			TimeOutProp_Red();
+			PlaySound3();
+		}
+		else if(prop.style.backgroundImage.indexOf('fatal')>-1){
+			AddBigProp();
+			PlaySound3();
+		}
+	}
+}
+
+//过期道具
+function TimeOutProp_Blue(){
+	if(!IsChangeBulletColorBlue){
+		IsChangeBulletColorBlue=true;
+		setTimeout(function(){IsChangeBulletColorBlue=false;},PropTimeOut);	
+	}
+	else{
+		IsChangeBulletColorBlue=true;
+		var old_BulletSpeed=BulletSpeed;
+		BulletSpeed=2;//射速加成
+		setTimeout(function(){BulletSpeed=old_BulletSpeed;},PropTimeOut);
+	}
+}
+function TimeOutProp_Red(){
+	if(IsChangeBulletColorBlue){
+		IsChangeBulletColorBlue=false;
+	}
+	else{
+		IsChangeBulletColorBlue=false;
+		var old_BulletSpeed=BulletSpeed;
+		BulletSpeed=2;//射速加成
+		setTimeout(function(){BulletSpeed=old_BulletSpeed;},PropTimeOut);
+	}
+}
+
+//子弹检测
+function CheckBullet(){
+	CheckProp();//检测是否存在道具碰撞
+	for(var i=0;i<20;i++){
+		//var bullet=document.getElementById('bullet'+i);//当前子弹实例	
+		var bullet;
+		switch(i){
+			case 0:bullet=bullet0;break;
+			case 1:bullet=bullet1;break;
+			case 2:bullet=bullet2;break;
+			case 3:bullet=bullet3;break;
+			case 4:bullet=bullet4;break;
+			case 5:bullet=bullet5;break;
+			case 6:bullet=bullet6;break;
+			case 7:bullet=bullet7;break;
+			case 8:bullet=bullet8;break;
+			case 9:bullet=bullet9;break;
+			case 10:bullet=bullet10;break;
+			case 11:bullet=bullet11;break;
+			case 12:bullet=bullet12;break;
+			case 13:bullet=bullet13;break;
+			case 14:bullet=bullet14;break;
+			case 15:bullet=bullet15;break;
+			case 16:bullet=bullet16;break;
+			case 17:bullet=bullet17;break;
+			case 18:bullet=bullet18;break;
+			case 19:bullet=bullet19;break;
+		}
+		
+		if(bullet!=null&&bullet.style.display!="none"&&
+				bullet.getBoundingClientRect().top>0){
+			//取得子弹位于x轴 a,b 坐标
+			//子弹左上角
+			var bullet_x_ax=bullet.getBoundingClientRect().left;
+			//子弹右上角
+			var bullet_x_bx=bullet.getBoundingClientRect().top+bullet.offsetWidth;
+		
+			//取得子弹位于y轴 A,B 坐标
+			//子弹左下角
+			var bullet_y_ay=bullet.getBoundingClientRect().top;
+			//子弹右下角
+			var bullet_y_by=bullet.getBoundingClientRect().top+bullet.offsetHeight;
+		
+			for(var j=0;j<10;j++){//检测低等飞机
+				//var hostilePlane=document.getElementById('hostilePlane'+j);
+				var hostilePlane;
+				switch(j){
+					case 0:hostilePlane=hostilePlane0;break;
+					case 1:hostilePlane=hostilePlane1;break;
+					case 2:hostilePlane=hostilePlane2;break;
+					case 3:hostilePlane=hostilePlane3;break;
+					case 4:hostilePlane=hostilePlane4;break;
+					case 5:hostilePlane=hostilePlane5;break;
+					case 6:hostilePlane=hostilePlane6;break;
+					case 7:hostilePlane=hostilePlane7;break;
+					case 8:hostilePlane=hostilePlane8;break;
+					case 9:hostilePlane=hostilePlane9;break;
+				}	
+				if(hostilePlane!=null&&hostilePlane.style.display!="none"&&
+					hostilePlane.getBoundingClientRect().top>0){
+
+					CheckCollidePlane(hostilePlane);//检测敌机与自己
+						
+					//取得低等机的位于x轴 a,b 坐标
+					//敌机左上角
+					var hostilePlane_x_ax=hostilePlane.getBoundingClientRect().left;
+					//敌机右上角
+					var hostilePlane_x_bx=hostilePlane.getBoundingClientRect().left+hostilePlane.offsetWidth;
+		
+					//取得低等机的位于y轴 A,B 坐标
+					//敌机左下角
+					var hostilePlane_y_ay=hostilePlane.getBoundingClientRect().top;
+					//敌机右下角
+					var hostilePlane_y_by=hostilePlane.getBoundingClientRect().top+hostilePlane.offsetHeight;
+				
+					//判断是否相撞,近似距离校正
+					var scope_x=0;
+					var scope_y=55;
+					if(
+					//x轴区域
+					hostilePlane_x_ax-bullet.offsetWidth-scope_x<=bullet_x_ax&&hostilePlane_x_bx+scope_x>=bullet_x_ax&&
+					//y轴区域
+					hostilePlane_y_ay-bullet.offsetHeight-scope_y<=bullet_y_by&&hostilePlane_y_by+scope_y>=bullet_y_ay){
+						var life=GetHostilePlaneLife("hostilePlane"+j);				
+						if((life-1)==0)//当前敌机生命值为0
+						{
+							UpdateHostilePlaneLife('hostilePlane'+j,0);
+							//hostilePlane.style.display="none";//待加入爆炸效果	
+							HostilePlaneBlast(hostilePlane,3);
+							Add_hostilePlane_C();
+							PlaySound2();
+						}
+						else if(life>0){
+							UpdateHostilePlaneLife('hostilePlane'+j,life-1);
+						}
+						bullet.style.display="none";//待加入爆炸效果
+					}
+				}
+			}
+			
+			for(var j=0;j<3;j++){//检测中等飞机
+				//var hostilePlane=document.getElementById('hostilePlane'+j);
+				var hostilePlane;
+				switch(j){
+					case 0:hostilePlane=hostilePlane2_0;break;
+					case 1:hostilePlane=hostilePlane2_1;break;
+					case 2:hostilePlane=hostilePlane2_2;break;
+				}	
+				if(hostilePlane!=null&&hostilePlane.style.display!="none"&&
+					hostilePlane.getBoundingClientRect().top>0){
+						
+					//取得中等机的位于x轴 a,b 坐标
+					//敌机左上角
+					var hostilePlane_x_ax=hostilePlane.getBoundingClientRect().left;
+					//敌机右上角
+					var hostilePlane_x_bx=hostilePlane.getBoundingClientRect().left+hostilePlane.offsetWidth;
+		
+					//取得中等机的位于y轴 A,B 坐标
+					//敌机左下角
+					var hostilePlane_y_ay=hostilePlane.getBoundingClientRect().top;
+					//敌机右下角
+					var hostilePlane_y_by=hostilePlane.getBoundingClientRect().top+hostilePlane.offsetHeight;
+				
+					//判断是否相撞,近似距离校正
+					var scope_x=0;
+					var scope_y=55;
+					if(
+					//x轴区域
+					hostilePlane_x_ax-bullet.offsetWidth-scope_x<=bullet_x_ax&&hostilePlane_x_bx+scope_x>=bullet_x_ax&&
+					//y轴区域
+					hostilePlane_y_ay-bullet.offsetHeight-scope_y<=bullet_y_by&&hostilePlane_y_by+scope_y>=bullet_y_ay){
+						var life=GetHostilePlaneLife("hostilePlane2_"+j);				
+						if((life-1)==0)//当前敌机生命值为0
+						{
+							UpdateHostilePlaneLife('hostilePlane2_'+j,0);
+							//hostilePlane.style.display="none";//待加入爆炸效果	
+							HostilePlaneBlast(hostilePlane,3);
+							Add_hostilePlane_B();
+							PlaySound2();
+						}
+						else if(life>0){
+							UpdateHostilePlaneLife('hostilePlane2_'+j,life-1);
+						}
+						bullet.style.display="none";//待加入爆炸效果
+					}
+				}
+			}
+			
+			for(var j=0;j<2;j++){//检测高等飞机
+				//var hostilePlane=document.getElementById('hostilePlane'+j);
+				var hostilePlane;
+				switch(j){
+					case 0:hostilePlane=hostilePlane3_0;break;
+					case 1:hostilePlane=hostilePlane3_1;break;
+				}	
+				if(hostilePlane!=null&&hostilePlane.style.display!="none"&&
+					hostilePlane.getBoundingClientRect().top>0){
+						
+					//取得高等机的位于x轴 a,b 坐标
+					//敌机左上角
+					var hostilePlane_x_ax=hostilePlane.getBoundingClientRect().left;
+					//敌机右上角
+					var hostilePlane_x_bx=hostilePlane.getBoundingClientRect().left+hostilePlane.offsetWidth;
+		
+					//取得高等机的位于y轴 A,B 坐标
+					//敌机左下角
+					var hostilePlane_y_ay=hostilePlane.getBoundingClientRect().top;
+					//敌机右下角
+					var hostilePlane_y_by=hostilePlane.getBoundingClientRect().top+hostilePlane.offsetHeight;
+				
+					//判断是否相撞,近似距离校正
+					var scope_x=0;
+					var scope_y=55;
+					if(
+					//x轴区域
+					hostilePlane_x_ax-bullet.offsetWidth-scope_x<=bullet_x_ax&&hostilePlane_x_bx+scope_x>=bullet_x_ax&&
+					//y轴区域
+					hostilePlane_y_ay-bullet.offsetHeight-scope_y<=bullet_y_by&&hostilePlane_y_by+scope_y>=bullet_y_ay){
+						var life=GetHostilePlaneLife("hostilePlane3_"+j);		
+						if((life-1)==0)//当前敌机生命值为0
+						{
+							UpdateHostilePlaneLife('hostilePlane3_'+j,0);
+							//hostilePlane.style.display="none";//待加入爆炸效果	
+							HostilePlaneBlast(hostilePlane,3);
+							Add_hostilePlane_A();
+							PlaySound2();
+						}
+						else if(life>0){
+							UpdateHostilePlaneLife('hostilePlane3_'+j,life-1);
+						}
+						bullet.style.display="none";//待加入爆炸效果
+					}
+				}
+			}
+		}
+	}
+}
+
+//飞机爆炸
+var BlastSpeed=100;
+var BlastImg1="url(image/blast1.png)";
+var BlastImg2="url(image/blast2.png)";
+var BlastImg3="url(image/blast3.png)";
+function HostilePlaneBlast(bullet,blastNum){
+	switch(blastNum){
+		case 1:bullet.style.backgroundImage=BlastImg1;break;
+		case 2:bullet.style.backgroundImage=BlastImg2;break;
+		case 3:bullet.style.backgroundImage=BlastImg3;break;
+	}
+	blastNum=blastNum-1;
+	if(blastNum>0){
+		setTimeout(function(){ HostilePlaneBlast(bullet,blastNum);},BlastSpeed);
+	}
+	else{
+		bullet.style.display="none";//待加入爆炸效果
+	}
+}
+
+//飞机间检测
+function CheckCollidePlane(hostilePlane){
+	//取得飞机位于x轴 a,b 坐标
+	//飞机左上角
+	var myPlane_x_ax=myPlane.getBoundingClientRect().left;
+	//飞机右上角
+	var myPlane_x_bx=myPlane.getBoundingClientRect().top+myPlane.offsetWidth;
+
+	//取得飞机位于y轴 A,B 坐标
+	//飞机左下角
+	var myPlane_y_ay=myPlane.getBoundingClientRect().top;
+	//飞机右下角
+	var myPlane_y_by=myPlane.getBoundingClientRect().top+myPlane.offsetHeight;
+
+	if(hostilePlane==null){
+		return;
+	}
+
+	//取得低等机的位于x轴 a,b 坐标
+	//敌机左上角
+	var hostilePlane_x_ax=hostilePlane.getBoundingClientRect().left;
+	//敌机右上角
+	var hostilePlane_x_bx=hostilePlane.getBoundingClientRect().left+hostilePlane.offsetWidth;
+		
+	//取得低等机的位于y轴 A,B 坐标
+	//敌机左下角
+	var hostilePlane_y_ay=hostilePlane.getBoundingClientRect().top;
+	//敌机右下角
+	var hostilePlane_y_by=hostilePlane.getBoundingClientRect().top+hostilePlane.offsetHeight;
+				
+	//判断是否相撞,近似距离校正
+	if(
+		//x轴区域
+		hostilePlane_x_ax-myPlane.offsetWidth<=myPlane_x_ax&&hostilePlane_x_bx>=myPlane_x_ax&&
+		//y轴区域
+		hostilePlane_y_ay-myPlane.offsetHeight<=myPlane_y_by&&hostilePlane_y_by>=myPlane_y_ay){
+		
+		EndGM();
+		PlaySound4();
+		//myPlane.style.display="none";//待加入爆炸效果
+	}
+}
+
+//积分处理
+function ClearNowScore(){
+	hostilePlane.innerHTML="得分:0";
+}
+//低级敌机
+function Add_hostilePlane_C(){
+	NowScore=NowScore+1000;
+	hostilePlane.innerHTML="得分:"+NowScore;
+}
+//中级敌机
+function Add_hostilePlane_B(){
+	NowScore=NowScore+6000;
+	hostilePlane.innerHTML="得分:"+NowScore;
+}
+//高级敌机
+function Add_hostilePlane_A(){
+	NowScore=NowScore+10000;
+	hostilePlane.innerHTML="得分:"+NowScore;
+}
+//道具
+function Add_hostilePlane_D(){
+	NowScore=NowScore+15000;
+	hostilePlane.innerHTML="得分:"+NowScore;
+}
+
+//敌机生命值
+var HostilePlane0_Life=2;var HostilePlane1_Life=2;var HostilePlane2_Life=2;
+var HostilePlane3_Life=2;var HostilePlane4_Life=2;var HostilePlane5_Life=2;
+var HostilePlane6_Life=2;var HostilePlane7_Life=2;var HostilePlane8_Life=2;var HostilePlane9_Life=2;
+var HostilePlane2_0_Life=5;var HostilePlane2_1_Life=5;var HostilePlane2_2_Life=5;
+var HostilePlane3_0_Life=8;var HostilePlane3_1_Life=8;
+//更新生命值
+function UpdateHostilePlaneLife(name,value){
+	switch(name){
+		case"hostilePlane0":HostilePlane0_Life=value;break;
+		case"hostilePlane1":HostilePlane1_Life=value;break;
+		case"hostilePlane2":HostilePlane2_Life=value;break;
+		case"hostilePlane3":HostilePlane3_Life=value;break;
+		case"hostilePlane4":HostilePlane4_Life=value;break;
+		case"hostilePlane5":HostilePlane5_Life=value;break;
+		case"hostilePlane6":HostilePlane6_Life=value;break;
+		case"hostilePlane7":HostilePlane7_Life=value;break;
+		case"hostilePlane8":HostilePlane8_Life=value;break;
+		case"hostilePlane9":HostilePlane9_Life=value;break;
+		
+		case"hostilePlane2_0":HostilePlane2_0_Life=value;break;
+		case"hostilePlane2_1":HostilePlane2_2_Life=value;break;
+		case"hostilePlane2_2":HostilePlane2_2_Life=value;break;
+		
+		case"hostilePlane3_0":HostilePlane3_0_Life=value;break;
+		case"hostilePlane3_1":HostilePlane3_1_Life=value;break;
+	}
+}
+
+//获取生命值
+function GetHostilePlaneLife(name){
+	switch(name){
+		case"hostilePlane0":return HostilePlane0_Life;break;
+		case"hostilePlane1":return HostilePlane1_Life;break;
+		case"hostilePlane2":return HostilePlane2_Life;break;
+		case"hostilePlane3":return HostilePlane3_Life;break;
+		case"hostilePlane4":return HostilePlane4_Life;break;
+		case"hostilePlane5":return HostilePlane5_Life;break;
+		case"hostilePlane6":return HostilePlane6_Life;break;
+		case"hostilePlane7":return HostilePlane7_Life;break;
+		case"hostilePlane8":return HostilePlane8_Life;break;
+		case"hostilePlane9":return HostilePlane9_Life;break;
+		
+		case"hostilePlane2_0":return HostilePlane2_0_Life;break;
+		case"hostilePlane2_1":return HostilePlane2_1_Life;break;
+		case"hostilePlane2_2":return HostilePlane2_2_Life;break;
+		
+		case"hostilePlane3_0":return HostilePlane3_0_Life;break;
+		case"hostilePlane3_1":return HostilePlane3_1_Life;break;
+	}
+}
+
+//游戏结束对话框
+var IsOpenEndBox=false;
+function OpenEndBox(){
+	if(IsOpenEndBox){
+		IsOpenEndBox=false;
+		endBox.style.display="none";
+	}
+	else{
+		IsOpenEndBox=true;
+		endBox.style.display="block";
+	}
+}
+
+//强制打开结束对话框
+function EndBoxIsOpen(){
+	if(!IsOpenEndBox){
+		OpenEndBox();
+	}
+}
+
+//处理游戏结束
+function EndGM(){
+	sumScore.innerHTML="总分:"+NowScore;
+	OpenEndBox();
+	IsStart=false;
+	IsEndGM=true;		
+	CloseBGA();				
+	HostilePlaneBlast(myPlane,3);
+	EndBoxIsOpen();//防止未打开结束
+}
+
+//添加必杀
+function AddBigProp(){
+	if(BigPropNowNum<3){
+		BigPropNowNum=BigPropNowNum+1;
+		DisplayBigProp();
+	}
+}
+
+//去掉一个必杀技
+function RemoveBigProp(){
+	if(BigPropNowNum>0){
+		BigPropNowNum=BigPropNowNum-1;
+		DisplayBigProp();
+	}
+}
+
+//显示必杀
+function DisplayBigProp(){
+	if(BigPropNowNum==1){
+		bigProp1.style.display="block";
+		bigProp2.style.display="none";
+		bigProp3.style.display="none";
+	}
+	else if(BigPropNowNum==2){
+		bigProp1.style.display="block";
+		bigProp2.style.display="block";
+		bigProp3.style.display="none";
+	}
+	else if(BigPropNowNum==3){
+		bigProp1.style.display="block";
+		bigProp2.style.display="block";
+		bigProp3.style.display="block";
+	}
+	else{
+		NotDisplayBigProp();
+	}
+}
+
+//移除显示
+function NotDisplayBigProp(){
+	bigProp1.style.display="none";
+	bigProp2.style.display="none";
+	bigProp3.style.display="none";
+}
+
+//必杀技
+function SendBigProp(){
+	if(BigPropNowNum>0&&IsStart){
+		RemoveBigProp();
+		if(hostilePlane0.style.display!="none"){
+			HostilePlaneBlast(hostilePlane0,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane1.style.display!="none"){
+			HostilePlaneBlast(hostilePlane1,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane2.style.display!="none"){
+			HostilePlaneBlast(hostilePlane2,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane3.style.display!="none"){
+			HostilePlaneBlast(hostilePlane3,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane4.style.display!="none"){
+			HostilePlaneBlast(hostilePlane4,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane5.style.display!="none"){
+			HostilePlaneBlast(hostilePlane5,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane6.style.display!="none"){
+			HostilePlaneBlast(hostilePlane6,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane7.style.display!="none"){
+			HostilePlaneBlast(hostilePlane7,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane8.style.display!="none"){
+			HostilePlaneBlast(hostilePlane8,3);
+			Add_hostilePlane_C();
+		}
+		if(hostilePlane9.style.display!="none"){
+			HostilePlaneBlast(hostilePlane9,3);
+			Add_hostilePlane_C();
+		}
+		
+		if(hostilePlane2_0.style.display!="none"){
+			HostilePlaneBlast(hostilePlane2_0,3);
+			Add_hostilePlane_B();
+		}
+		if(hostilePlane2_1.style.display!="none"){
+			HostilePlaneBlast(hostilePlane2_1,3);
+			Add_hostilePlane_B();
+		}
+		if(hostilePlane2_2.style.display!="none"){
+			HostilePlaneBlast(hostilePlane2_2,3);
+			Add_hostilePlane_B();
+		}
+		
+		if(hostilePlane3_0.style.display!="none"){
+			HostilePlaneBlast(hostilePlane3_0,3);
+			Add_hostilePlane_A();
+		}
+		if(hostilePlane3_1.style.display!="none"){
+			HostilePlaneBlast(hostilePlane3_1,3);
+			Add_hostilePlane_A();
+		}
+		PlaySound2();
+	}
+}
+//射击音效
+function PlaySound1(){
+	if(OpenBGSound){
+		bgSound1.play();
+	}
+}
+//爆炸音效
+function PlaySound2(){
+	if(OpenBGSound){
+		bgSound2.play();
+	}
+}
+//道具音效
+function PlaySound3(){
+	if(OpenBGSound){
+		bgSound3.play();
+	}
+}
+//结束音效
+function PlaySound4(){
+	if(OpenBGSound){
+		bgSound4.play();
+	}
+}
+//开关声音
+function OnOrOffBGSound(){
+	if(OpenBGSound){
+		OpenBGSound=false;
+		bgSoundO.innerHTML="声音:关";
+	}
+	else{
+		OpenBGSound=true;
+		bgSoundO.innerHTML="声音:开";
+	}
+}
+</script>
+</head>
+
+<body onresize="NewlyIniLoc()" onmouseup="MyPlaneMouseUp()">
+<div class="maindisplay" id="mainBG" onmousemove="FollowMouse()" onmousedown="MainDisplyClick()">
+
+<div class="displaybgsound" onclick="OnOrOffBGSound()" id="bgSoundO">声音:开</div>
+
+<div class="countdisplay" id="countDisplay"><img src="image/start.png" class="startgm" id="btn_Start" onclick="DealStartBtnEvent()"/><div class="countscore_space"></div><div class="countscore" id="lable_Countscore">得分:0</div></div>
+<div class="title" id="titlePage"><a class="logo">“打飞机”</a><br/><br/><br/><a class="msg" onclick="GoToGM()">开始游戏</a><br/><br/><br/><a class="playmethod" onclick="OpenPlayMethodBox()">玩法介绍</a><br/><br/><br/><a class="help" onclick="OpenHelpBox()">帮助</a></div>
+<div class="helpbox" id="helpBox"><a>开发者:万国睿</a><br /><a>QQ：975738768</a><br /><a>版本号：1.0.0.1</a><br /><br /><a class="help" onclick="OpenHelpBox()">返回</a></div>
+
+<div class="playmethodbox" id="playmethodBox"><a>1.按住飞机进行移动</a><br /><br /><a>2.按住飞机时右键施展必杀技</a><br /><br /><a>3.只点击右键暂停游戏</a><br /><br /><a class="help" onclick="OpenPlayMethodBox()">返回</a></div>
+
+<div class="optionbox" id="optionBox"><a class="returngm" onclick="StartGM()">返回游戏</a><br/><br/><a class="restartgm" onclick="RestartGM()">重新开始</a><br/><br /><a class="quitgm" onclick="QuitGM()">退出游戏</a></div>
+
+<div class="endbox" id="endBox"><a class="score" id="sumScore">总分:0</a><br/><br/><a class="restartgm" onclick="RestartGM()">重新开始</a><br/><br /><a class="quitgm" onclick="QuitGM()">退出游戏</a></div>
+
+<div class="propbox">
+<div class="bigProp" id="bigProp1" onclick="SendBigProp()"></div>
+<div class="bigProp" id="bigProp2" onclick="SendBigProp()"></div>
+<div class="bigProp" id="bigProp3" onclick="SendBigProp()"></div>
+</div>
+
+<div class="myplane" id="myPlane" onmouseup="MyPlaneMouseUp()" onmousedown="MyPlaneMouseDwon()">
+<div class="fire1" id="myPlaneFire1"></div>
+<div class="fire2" id="myPlaneFire2"></div>
+</div>
+
+<!--子弹-->
+<div class="bullet" id="bullet0"></div>
+<div class="bullet" id="bullet1"></div>
+<div class="bullet" id="bullet2"></div>
+<div class="bullet" id="bullet3"></div>
+<div class="bullet" id="bullet4"></div>
+<div class="bullet" id="bullet5"></div>
+<div class="bullet" id="bullet6"></div>
+<div class="bullet" id="bullet7"></div>
+<div class="bullet" id="bullet8"></div>
+<div class="bullet" id="bullet9"></div>
+<div class="bullet" id="bullet10"></div>
+<div class="bullet" id="bullet11"></div>
+<div class="bullet" id="bullet12"></div>
+<div class="bullet" id="bullet13"></div>
+<div class="bullet" id="bullet14"></div>
+<div class="bullet" id="bullet15"></div>
+<div class="bullet" id="bullet16"></div>
+<div class="bullet" id="bullet17"></div>
+<div class="bullet" id="bullet18"></div>
+<div class="bullet" id="bullet19"></div>
+
+<!--飞机-->
+<!--低等敌机-->
+<div class="hostileplane" id="hostilePlane0"></div>
+<div class="hostileplane" id="hostilePlane1"></div>
+<div class="hostileplane" id="hostilePlane2"></div>
+<div class="hostileplane" id="hostilePlane3"></div>
+<div class="hostileplane" id="hostilePlane4"></div>
+<div class="hostileplane" id="hostilePlane5"></div>
+<div class="hostileplane" id="hostilePlane6"></div>
+<div class="hostileplane" id="hostilePlane7"></div>
+<div class="hostileplane" id="hostilePlane8"></div>
+<div class="hostileplane" id="hostilePlane9"></div>
+<!--中等敌机-->
+<div class="hostileplane2" id="hostilePlane2_0"></div>
+<div class="hostileplane2" id="hostilePlane2_1"></div>
+<div class="hostileplane2" id="hostilePlane2_2"></div>
+<!--高等敌机-->
+<div class="hostileplane3" id="hostilePlane3_0"></div>
+<div class="hostileplane3" id="hostilePlane3_1"></div>
+
+<!--道具-->
+<div class="prop_c" id="prop"></div>
+</div>
+
+
+<!--autostart="true" loop="true"-->
+<embed src="sound/bullet.mp3" autostart="false" loop="false" width="0" height="0" id="bgSound1"></embed>
+<embed src="sound/enemy1_down.mp3" autostart="false" loop="false" width="0" height="0" id="bgSound2"></embed>
+<embed src="sound/button.mp3" autostart="false" loop="false" width="0" height="0" id="bgSound3"></embed>
+<embed src="sound/game_over.mp3" autostart="false" loop="false" width="0" height="0" id="bgSound4"></embed>
+</body>
+</html>
